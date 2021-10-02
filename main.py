@@ -34,57 +34,32 @@ with open('recipes.txt', encoding='utf-8') as file:
     # pprint(get_shop_list_by_dishes(['Омлет', 'Фахитос'], 2))
 
 
+def get_union_files(puth):
+    '''
+    Необходимо указать путь до папки с файлами, относительно директории, в которой лежит файл main.py
+    Пример: documents/files
+    '''
 
+    with open('final.txt', 'w', encoding='utf-8') as write_file:
 
-# path = f'{os.getcwd()}/documents'
-# file_list = []
-#
-# with open('final.txt', 'w', encoding='utf-8') as write_file:
-#
-#     for file_name in os.listdir(path):
-#         path = f'{os.getcwd()}/documents/{file_name}'
-#         # print(path)
-#
-#         with open(path, encoding='utf-8') as file:
-#             length = len(file.readlines())
-#
-#         with open(path, encoding='utf-8') as file:
-#             text = file.readlines()
-#             file_list.append({'name': file_name, 'length':length, 'text':text})
-#
-#     file_list.sort(key=lambda dictionary: dictionary['length'])
-#
-#     for i in file_list:
-#         write_file.write(f'{i["name"]}\n{i["length"]}\n')
-#         for text_files in i['text']:
-#             print(text_files)
-#             write_file.write(f'{text_files.strip()}\n')
+        path = f'{os.getcwd()}/{puth}'
+        file_list = []
 
+        for file_name in os.listdir(path):
+            path = f'{os.getcwd()}/{puth}/{file_name}'
 
+            with open(path, encoding='utf-8') as file:
+                length = len(file.readlines())
 
+            with open(path, encoding='utf-8') as file:
+                text = file.readlines()
+                file_list.append({'name': file_name, 'length':length, 'text':text})
 
+        file_list.sort(key=lambda dictionary: dictionary['length'])
 
+        for i in file_list:
+            write_file.write(f'{i["name"]}\n{i["length"]}\n')
+            for text_files in i['text']:
+                write_file.write(f'{text_files.strip()}\n')
 
-with open('final.txt', 'w', encoding='utf-8') as write_file:
-
-    path = f'{os.getcwd()}/documents'
-    file_list = []
-
-    for file_name in os.listdir(path):
-        path = f'{os.getcwd()}/documents/{file_name}'
-        # print(path)
-
-        with open(path, encoding='utf-8') as file:
-            length = len(file.readlines())
-
-        with open(path, encoding='utf-8') as file:
-            text = file.readlines()
-            file_list.append({'name': file_name, 'length':length, 'text':text})
-
-    file_list.sort(key=lambda dictionary: dictionary['length'])
-
-    for i in file_list:
-        write_file.write(f'{i["name"]}\n{i["length"]}\n')
-        for text_files in i['text']:
-            print(text_files)
-            write_file.write(f'{text_files.strip()}\n')
+get_union_files('documents')
